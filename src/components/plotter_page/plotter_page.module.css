@@ -1,7 +1,34 @@
-
-  
-  caption {
+caption {
       background-color: wheat;
     text-align: center;
     caption-side: top;
+  } 
+  /* .table-bordered tr, .table-bordered th{
+      width: 3px;
+  } */
+  /* table, th, td {
+   width: 10px;
+  } */
+  /* .rowStyle{
+      width: 10px;
   }
+.table-bordered{
+    width: 10px;
+} */
+td, th {
+    display: flex;
+    width: 105px;
+
+}
+  
+  th {
+    height: 100px;
+
+  }
+ .thStyle{
+     padding-top: 35px;
+ }
+ .disF{
+     display: flex;
+ }
+ 

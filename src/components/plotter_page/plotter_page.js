@@ -13,32 +13,22 @@ class PlotterPage extends React.Component {
     render() {
         return (
             <div>
-                <Table striped bordered hover>
-                    <caption>
-                        Plotter
-                        </caption>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
                 <div>
+                    <Table bordered>
+                        {/* <Table className="table-borderless"> */}
+                        <caption>
+                            Plotter
+                        </caption>
+                        {this.props.data?.map((element) => {
+                            return <tr>
+                                <th Style="
+    padding-top: 35px;"> {element.name}</th>
+
+                            </tr>
+                        })}
+                    </Table>
                 </div>
+
             </div>
         )
     }
@@ -46,10 +36,6 @@ class PlotterPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         data: state.DimensionsMeasureReducer.data
-        // data: state.RepoReducer.data,
-        // loading: state.RepoReducer.loading,
-        // trial: state.RepoReducer.trial,
-        // allData: state.RepoReducer.AllData
     };
 };
 
