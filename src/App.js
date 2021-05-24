@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {PlotterPage} from './components/plotter_page/plotter_page';
+import PlotterPage from './components/plotter_page/plotter_page';
 
 
 export default class App extends React.Component {
