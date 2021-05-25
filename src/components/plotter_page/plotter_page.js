@@ -4,7 +4,7 @@ import styles from './plotter_page.module.css'
 import { connect } from "react-redux";
 import { _GetDimensionsMeasuresData } from "../../redux/redux-actions/dimensions_measures_action";
 import {_GetPlotterData} from "../../redux/redux-actions/plotter_data_action";
-
+import Chart from '../../sharedpreferences/chart/chart'
 class PlotterPage extends React.Component {
     async componentDidMount() {
         await this.props.GetDimensionsMeasuresData();
@@ -18,13 +18,15 @@ class PlotterPage extends React.Component {
                         <caption>
                             Plotter
                         </caption>
+                        <Chart></Chart>
                         {this.props.data?.map((element) => {
                             return <tr>
-                                <th Style="
-    padding-top: 35px;"> {element.name}</th>
+                                <th style={{paddingTop:'45px'}}> {element.name}</th>
+    
 
                             </tr>
                         })}
+                        
                     </Table>
                 </div>
 

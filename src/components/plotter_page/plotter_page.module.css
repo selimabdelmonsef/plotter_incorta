@@ -17,12 +17,12 @@ caption {
 } */
 td, th {
     display: flex;
-    width: 105px;
+    width: 85px;
 
 }
   
   th {
-    height: 100px;
+    height: 120px;
 
   }
  

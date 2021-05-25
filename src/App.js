@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PlotterPage from './components/plotter_page/plotter_page';
-import Chart from './sharedpreferences/chart'
+import Chart from './sharedpreferences/chart/chart'
 
 
 export default class App extends React.Component {

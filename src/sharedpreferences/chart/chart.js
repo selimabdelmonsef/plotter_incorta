@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { _GetPlotterData } from "../redux/redux-actions/plotter_data_action";
+import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
+import styles from './chart.module.css'
 class Chart extends React.Component {
     constructor(props){
     super(props);
@@ -47,7 +48,7 @@ class Chart extends React.Component {
             console.log(this.props.plotterData)       
         }
         async getMeasures(){
-                this.props.plotterData[1].values.map((measuresValue,index)=>{
+                this.props.plotterData[1]?.values.map((measuresValue,index)=>{
                 this.state.dataLine.datasets.forEach((dataset) => {
                     dataset.data.push(parseInt(this.props.plotterData[1].values[index]));
                 });
@@ -67,8 +68,8 @@ class Chart extends React.Component {
     }
     render() {
         return (
-            <MDBContainer>
-                <h3 className="mt-5">Line chart</h3>
+            <MDBContainer className={styles.chartStyle}>
+                {/* <h3 className="mt-5"></h3> */}
                 <Line data={this.state.dataLine} options={{ responsive: true }} />
             </MDBContainer>
         )
