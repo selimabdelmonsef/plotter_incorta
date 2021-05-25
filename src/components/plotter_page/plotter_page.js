@@ -3,12 +3,11 @@ import Table from 'react-bootstrap/Table';
 import styles from './plotter_page.module.css'
 import { connect } from "react-redux";
 import { _GetDimensionsMeasuresData } from "../../redux/redux-actions/dimensions_measures_action";
-
+import {_GetPlotterData} from "../../redux/redux-actions/plotter_data_action";
 
 class PlotterPage extends React.Component {
     async componentDidMount() {
         await this.props.GetDimensionsMeasuresData();
-        console.log(this.props.data)
     }
     render() {
         return (
@@ -35,7 +34,9 @@ class PlotterPage extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        data: state.DimensionsMeasureReducer.data
+        data: state.DimensionsMeasureReducer.data,
+        plotterData: state.PlotterDataReducer.data,
+
     };
 };
 
@@ -43,6 +44,9 @@ const mapDisaptchToProps = (dispatch) => {
     return {
         GetDimensionsMeasuresData: (data, onSucess) => {
             dispatch(_GetDimensionsMeasuresData(data, onSucess));
+        },
+        GetPlotterData: (data, onSucess) => {
+            dispatch(_GetPlotterData(data, onSucess));
         },
     };
 };

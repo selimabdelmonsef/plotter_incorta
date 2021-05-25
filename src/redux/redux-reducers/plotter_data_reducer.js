@@ -1,9 +1,9 @@
 const initState = [];
 
-export default function DimensionsMeasureReducer(state = initState, action) {
+export default function PlotterDataReducer(state = initState, action) {
 
     switch (action.type) {
-        case 'GET_DATA':
+        case 'GET_PLOTTER_DATA':
             return {
                 ...state,
                 data: action.data
