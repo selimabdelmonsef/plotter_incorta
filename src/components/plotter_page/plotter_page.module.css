@@ -20,6 +20,8 @@ td, th {
   background-color: #eee;
   top: 150px;
   left: 95px;
+  text-align: center;
+    padding-top: 3px;
   position: absolute;
 }
 .block_2 {
@@ -29,6 +31,8 @@ td, th {
   background-color: #eee;
   top: 200px;
   left: 95px;
+  text-align: center;
+    padding-top: 3px;
   position: absolute;
 }
 .errorStyle{
@@ -39,7 +43,24 @@ td, th {
   color: red;
 }
 @media only screen and (min-width:768px){
+  th {
+    height: 100px;
 
+  }
+  .block_1 {
+    top: 60px;
+    left: 30%;
+  }
+  .block_2 {
+    top: 60px;
+    left: 60%;
+  }
+  .errorStyle{
+    top: 70px;
+    font-size: 20px;
+    left: 100px;
+    color: red;
+  }
 
 }
 

@@ -67,11 +67,12 @@ class Chart extends React.Component {
     }, 2000)
     }
     render() {
-        return (
+        return ( 
+
             <MDBContainer className={styles.chartStyle}>
-                {/* <h3 className="mt-5"></h3> */}
-                <Line data={this.state.dataLine} options={{ responsive: true }} />
+                <Line  data={this.state.dataLine} options={{ responsive: true }} height="130px" />
             </MDBContainer>
+   
         )
     }
 }

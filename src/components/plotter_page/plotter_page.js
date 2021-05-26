@@ -21,7 +21,8 @@ class PlotterPage extends React.Component {
     onDragStart = (event, taskName) => {
         event.dataTransfer.setData("taskName", taskName);
         this.setState({
-            handleDrag_1: taskName
+            handleDrag_1: taskName,
+            dragError:"",
         })
     }
     onDragOver = (event, task) => {
@@ -33,7 +34,7 @@ class PlotterPage extends React.Component {
             handleDrag_2: this.state.handleDrag_1
         })
         : this.setState({
-            dragError: "please Drag in the right place"
+            dragError: "Sorry, should be dropped in Measure"
         })
         console.log(this.state.handleDrag_2);
         console.log(this.state.dragError);
@@ -42,10 +43,11 @@ class PlotterPage extends React.Component {
     onDropMeasure = (event, taskName) => {
         this.state.handleDrag_1.function === "measure"?
         this.setState({
-            handleDragMeasure: this.state.handleDrag_1
+            handleDragMeasure: this.state.handleDrag_1,
+            dragError:"",
         })
         : this.setState({
-            dragError: "please Drag in the right place"
+            dragError: "Sorry, Should be dropped in Dimension"
         })
         console.log(this.state.handleDrag_2);
         console.log(this.state.dragError);
