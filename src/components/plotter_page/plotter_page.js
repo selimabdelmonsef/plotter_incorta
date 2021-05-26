@@ -6,6 +6,9 @@ import { _GetDimensionsMeasuresData } from "../../redux/redux-actions/dimensions
 import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
 import {_GetChartData} from "../../redux/redux-actions/chart_action"
 import Chart from '../../sharedpreferences/chart/chart'
+
+export let dimensionValue="";
+export let measureValue = "";
 class PlotterPage extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +17,7 @@ class PlotterPage extends React.Component {
             handleDrag_2: "",
             handleDragMeasure:"",
             dragError:"",
+            chartComplete:false,
         }
     }
     async componentDidMount() {
@@ -25,6 +29,7 @@ class PlotterPage extends React.Component {
         this.setState({
             handleDrag_1: taskName,
             dragError:"",
+            chartComplete:false,
         })
     }
     onDragOver = (event, task) => {
@@ -35,28 +40,59 @@ class PlotterPage extends React.Component {
             this.setState({
                 handleDrag_2: this.state.handleDrag_1
             });
-            this.props.GetChartData();
+            dimensionValue=this.state.handleDrag_2.name;
+            // console.log(this.state.handleDrag_2.name);
+            // setTimeout(()=>{
+            //     dimensionValue=this.state.handleDrag_2.name;
+                
+            // },2000);
+            
+            
         }
         else{
             this.setState({
                 dragError: "Sorry, should be dropped in Measure"
             })
         }
-        
+        if(measureValue!=="" && dimensionValue!== ""){
+            this.props.GetPlotterData();
+            this.props.GetChartData();
+            this.setState({
+             chartComplete:true,
+            })
+        }
+        console.log(this.props)
         console.log(this.state.handleDrag_2);
         console.log(this.state.dragError);
 
     }
     onDropMeasure = (event, taskName) => {
-        this.state.handleDrag_1.function === "measure"?
-        this.setState({
-            handleDragMeasure: this.state.handleDrag_1,
-            dragError:"",
-        })
-        
-        : this.setState({
-            dragError: "Sorry, Should be dropped in Dimension"
-        })
+        if(this.state.handleDrag_1.function === "measure"){
+            this.setState({
+                handleDragMeasure: this.state.handleDrag_1,
+                dragError:"",
+            })
+            measureValue = this.state.handleDragMeasure.name
+            // console.log(this.props)
+            // setTimeout(()=>{
+            //     measureValue = this.state.handleDragMeasure.name
+            // },2000);
+            
+            
+        }
+      
+        else{
+            this.setState({
+                dragError: "Sorry, Should be dropped in Dimension"
+            })
+        }
+        if(measureValue!=="" && dimensionValue!== ""){
+            this.props.GetPlotterData();
+                this.props.GetChartData();
+            this.setState({
+             chartComplete:true,
+            })
+        }
         console.log(this.state.handleDrag_2);
         console.log(this.state.dragError);
 
@@ -70,7 +106,8 @@ class PlotterPage extends React.Component {
                         <caption>
                             Plotter
                         </caption>
-                        <Chart></Chart>
+                        {this.state.chartComplete===false?<div>No Data Yet</div>:<Chart></Chart>}
+                        
                         {this.props.data?.map((element, index) => {
                             return <tr>
                                 <th draggable="true" onDragStart={(event) => this.onDragStart(event, element)} style={{ paddingTop: '45px' }}> {element.name}</th>
@@ -99,6 +136,7 @@ const mapStateToProps = (state) => {
     return {
         data: state.DimensionsMeasureReducer.data,
         plotterData: state.PlotterDataReducer.data,
+        dimensions: state.handleDrag_2,
 
     };
 };
