@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+
 import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import styles from './chart.module.css'
+import {_GetChartData} from "../../redux/redux-actions/chart_action"
+
 class Chart extends React.Component {
     constructor(props) {
         super(props);
@@ -47,7 +50,7 @@ class Chart extends React.Component {
                 }
             })
         })
-        console.log(this.props.plotterData)
+        // console.log(this.props.plotterData)
     }
     async getMeasures() {
         this.props?.plotterData[1]?.values.map((measuresValue, index) => {
@@ -69,8 +72,10 @@ class Chart extends React.Component {
                     this.setState({
                         noDataYet: true
                     })
+                    
+                    
                 }
-                else {
+                else { 
                 this.setState({
                     noDataYet:false
                 })
@@ -82,7 +87,7 @@ class Chart extends React.Component {
     render() {
         return (
             <div>
-                {this.state.noDataYet===true? 
+                {this.props.chartData===undefined? 
                 <div className={styles.noDataStyle}>No Data Yet, Please Drop Dimension And Measure</div> 
                 : 
                 <MDBContainer className={styles.chartStyle}>
@@ -97,6 +102,8 @@ class Chart extends React.Component {
 const mapStateToProps = (state) => {
     return {
         plotterData: state.PlotterDataReducer.data,
+        chartData: state.ChartReducer.data,
+
 
     };
 };
@@ -105,6 +112,9 @@ const mapDisaptchToProps = (dispatch) => {
     return {
         GetPlotterData: (data, onSucess) => {
             dispatch(_GetPlotterData(data, onSucess));
+        },
+        GetChartData: (data, onSucess) => {
+            dispatch(_GetChartData(data, onSucess));
         },
     };
 };

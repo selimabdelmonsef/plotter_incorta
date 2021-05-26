@@ -4,6 +4,7 @@ import { api } from '../../constants/apis.js';
 
 
 export const _GetPlotterData = () => (dispatch, measuresData, dimensionData) => {
+    console.log(measuresData);
     Axios.post(api.postPlotterData_api, {
         
             "measures": [measuresData],

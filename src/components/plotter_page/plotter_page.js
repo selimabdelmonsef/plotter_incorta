@@ -4,6 +4,7 @@ import styles from './plotter_page.module.css'
 import { connect } from "react-redux";
 import { _GetDimensionsMeasuresData } from "../../redux/redux-actions/dimensions_measures_action";
 import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
+import {_GetChartData} from "../../redux/redux-actions/chart_action"
 import Chart from '../../sharedpreferences/chart/chart'
 class PlotterPage extends React.Component {
     constructor(props) {
@@ -30,13 +31,18 @@ class PlotterPage extends React.Component {
         event.preventDefault();
     }
     onDropDimension = (event, taskName) => {
-        this.state.handleDrag_1.function === "dimension"?
-        this.setState({
-            handleDrag_2: this.state.handleDrag_1
-        })
-        : this.setState({
-            dragError: "Sorry, should be dropped in Measure"
-        })
+        if(this.state.handleDrag_1.function === "dimension"){
+            this.setState({
+                handleDrag_2: this.state.handleDrag_1
+            });
+            this.props.GetChartData();
+        }
+        else{
+            this.setState({
+                dragError: "Sorry, should be dropped in Measure"
+            })
+        }
+        
         console.log(this.state.handleDrag_2);
         console.log(this.state.dragError);
 
@@ -47,6 +53,7 @@ class PlotterPage extends React.Component {
             handleDragMeasure: this.state.handleDrag_1,
             dragError:"",
         })
+        
         : this.setState({
             dragError: "Sorry, Should be dropped in Dimension"
         })
@@ -103,6 +110,9 @@ const mapDisaptchToProps = (dispatch) => {
         },
         GetPlotterData: (data, onSucess) => {
             dispatch(_GetPlotterData(data, onSucess));
+        },
+        GetChartData: (data, onSucess) => {
+            dispatch(_GetChartData(data, onSucess));
         },
     };
 };
