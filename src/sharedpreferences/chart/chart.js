@@ -5,7 +5,7 @@ import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import styles from './chart.module.css'
-import {_GetChartData} from "../../redux/redux-actions/chart_action"
+import { _GetChartData } from "../../redux/redux-actions/chart_action"
 
 class Chart extends React.Component {
     constructor(props) {
@@ -42,7 +42,7 @@ class Chart extends React.Component {
         }
     }
     async getDimensionsData() {
-        this.props.plotterData[0].values?.map((dimensionsValue) => {
+        this.props.plotterData[0]?.values?.map((dimensionsValue) => {
             this.setState({
                 dataLine: this.state.dataLine = {
                     datasets: this.state.dataLine.datasets,
@@ -58,41 +58,21 @@ class Chart extends React.Component {
                 dataset.data.push(parseInt(this.props.plotterData[1].values[index]));
             });
         });
-        console.log(this.props.plotterData[1].values)
-        console.log(this.state.dataLine.datasets[0])
+        // console.log(this.props.plotterData[1].values)
+        // console.log(this.state.dataLine.datasets[0])
     }
 
 
     componentDidMount() {
-        this.props.GetPlotterData();
-       
-        
-            setTimeout(() => {
-                if (this.props.plotterData === undefined) {
-                    this.setState({
-                        noDataYet: true
-                    })
-                    
-                    
-                }
-                else { 
-                this.setState({
-                    noDataYet:false
-                })
-                this.getMeasures();
-                this.getDimensionsData();
-            }
-            }, 2000)
+        this.getMeasures();
+        this.getDimensionsData();
     }
     render() {
         return (
             <div>
-                {this.props.chartData===undefined? 
-                <div className={styles.noDataStyle}>No Data Yet, Please Drop Dimension And Measure</div> 
-                : 
                 <MDBContainer className={styles.chartStyle}>
-                    <Line data={this.state.dataLine} options={{ responsive: true }} height="130px" />
-                </MDBContainer>}
+                    <Line data={this.state.dataLine} options={{ responsive: true }} height={130} />
+                </MDBContainer>
             </div>
 
 

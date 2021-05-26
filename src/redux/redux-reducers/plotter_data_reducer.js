@@ -1,4 +1,4 @@
-const initState = [];
+const initState = { data: [], loading: false, error: null };
 
 export default function PlotterDataReducer(state = initState, action) {
 
@@ -6,8 +6,20 @@ export default function PlotterDataReducer(state = initState, action) {
         case 'GET_PLOTTER_DATA':
             return {
                 ...state,
-                data: action.data
+                loading: true
             };
+        case 'GET_PLOTTER_DATA_SUCCESS':
+            return {
+                loading: false,
+                data: action.payload,
+                error: null
+            };
+            case 'GET_PLOTTER_DATA_FAIL':
+                return {
+                    ...state,
+                    loading: false,
+                    error: action.payload
+                };
         default: return state;
     }
 }

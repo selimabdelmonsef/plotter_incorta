@@ -40,6 +40,11 @@ td, th {
   left: 126px;
   color: red;
 }
+.textLoading{
+  position: absolute;
+    left: 30%;
+    top: 50%;
+}
 @media only screen and (min-width:768px){
   th {
     height: 100px;

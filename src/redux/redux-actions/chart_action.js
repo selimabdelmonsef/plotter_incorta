@@ -3,4 +3,5 @@ export const _GetChartData = () => (dispatch, data) => {
         type: "CHART_DATA",
         data: true
     });
+    
 } 
