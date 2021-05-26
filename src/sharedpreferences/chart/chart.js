@@ -48,7 +48,7 @@ class Chart extends React.Component {
             console.log(this.props.plotterData)       
         }
         async getMeasures(){
-                this.props.plotterData[1]?.values.map((measuresValue,index)=>{
+                this.props?.plotterData[1]?.values.map((measuresValue,index)=>{
                 this.state.dataLine.datasets.forEach((dataset) => {
                     dataset.data.push(parseInt(this.props.plotterData[1].values[index]));
                 });

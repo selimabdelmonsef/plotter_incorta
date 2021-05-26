@@ -25,4 +25,22 @@ td, th {
     height: 120px;
 
   }
- 
+ .block_1 {
+  width: 15rem;
+  height: 2rem;
+  margin: 0.5rem;
+  background-color: #eee;
+  top: 150px;
+  left: 95px;
+  position: absolute;
+}
+.block_2 {
+  width: 15rem;
+  height: 2rem;
+  margin: 0.5rem;
+  background-color: #eee;
+  top: 200px;
+  left: 95px;
+  position: absolute;
+}
+
