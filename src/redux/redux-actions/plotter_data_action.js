@@ -3,11 +3,13 @@ import { api } from '../../constants/apis.js';
 
 
 
-export const _GetPlotterData = () => (dispatch, data) => {
+export const _GetPlotterData = () => (dispatch, measuresData, dimensionData) => {
     Axios.post(api.postPlotterData_api, {
         
-            "measures": ["Cost"],
-            "dimension": "Year"
+            "measures": [measuresData],
+            "dimension": dimensionData
+            // "measures": ["Cost"],
+            // "dimension": "Year"
         
     }).then(response => {
     // console.log(response.data);

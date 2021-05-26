@@ -17,6 +17,7 @@ class PlotterPage extends React.Component {
     }
     async componentDidMount() {
         await this.props.GetDimensionsMeasuresData();
+        
     }
     onDragStart = (event, taskName) => {
         event.dataTransfer.setData("taskName", taskName);
