@@ -3,18 +3,6 @@ caption {
     text-align: center;
     caption-side: top;
   } 
-  /* .table-bordered tr, .table-bordered th{
-      width: 3px;
-  } */
-  /* table, th, td {
-   width: 10px;
-  } */
-  /* .rowStyle{
-      width: 10px;
-  }
-.table-bordered{
-    width: 10px;
-} */
 td, th {
     display: flex;
     width: 85px;
@@ -42,5 +30,16 @@ td, th {
   top: 200px;
   left: 95px;
   position: absolute;
+}
+.errorStyle{
+  position: absolute;
+  bottom: 50px;
+  font-size: 20px;
+  left: 126px;
+  color: red;
+}
+@media only screen and (min-width:768px){
+
+
 }
 

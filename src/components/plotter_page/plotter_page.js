@@ -9,8 +9,10 @@ class PlotterPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            task1: "",
-            task2: ""
+            handleDrag_1: "",
+            handleDrag_2: "",
+            handleDragMeasure:"",
+            dragError:"",
         }
     }
     async componentDidMount() {
@@ -19,16 +21,35 @@ class PlotterPage extends React.Component {
     onDragStart = (event, taskName) => {
         event.dataTransfer.setData("taskName", taskName);
         this.setState({
-            task1: taskName
+            handleDrag_1: taskName
         })
     }
     onDragOver = (event, task) => {
         event.preventDefault();
     }
-    onDrop = (event, taskName) => {
+    onDropDimension = (event, taskName) => {
+        this.state.handleDrag_1.function === "dimension"?
         this.setState({
-            task2: this.state.task1.name
+            handleDrag_2: this.state.handleDrag_1
         })
+        : this.setState({
+            dragError: "please Drag in the right place"
+        })
+        console.log(this.state.handleDrag_2);
+        console.log(this.state.dragError);
+
+    }
+    onDropMeasure = (event, taskName) => {
+        this.state.handleDrag_1.function === "measure"?
+        this.setState({
+            handleDragMeasure: this.state.handleDrag_1
+        })
+        : this.setState({
+            dragError: "please Drag in the right place"
+        })
+        console.log(this.state.handleDrag_2);
+        console.log(this.state.dragError);
+
     }
 
     render() {
@@ -44,16 +65,22 @@ class PlotterPage extends React.Component {
                             return <tr>
                                 <th draggable="true" onDragStart={(event) => this.onDragStart(event, element)} style={{ paddingTop: '45px' }}> {element.name}</th>
 
-                                <div className={styles.block_1} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDrop(event)}>
-                                    <span >{this.state.task2}</span>
+                                <div className={styles.block_1} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropDimension(event)}>
+                                    Dimensions: <span >
+                                    {this.state.handleDrag_2.name}</span>
                                 </div>
-                                <div className={styles.block_2}>
-                                    <span ></span>
+                                <div className={styles.block_2} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropMeasure(event)}>
+                                Measure: <span >
+                                       {this.state.handleDragMeasure.name}
+                                    </span>
+                                    
                                 </div>
                             </tr>
                         })}
+                        <h1 className={styles.errorStyle}>{this.state.dragError}</h1>
                     </Table>
                 </div>
+                
             </div>
         )
     }
