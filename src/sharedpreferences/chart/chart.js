@@ -5,7 +5,6 @@ import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import styles from './chart.module.css'
-import { _GetChartData } from "../../redux/redux-actions/chart_action"
 
 class Chart extends React.Component {
     constructor(props) {
@@ -68,7 +67,7 @@ class Chart extends React.Component {
         this.getDimensionsData();
     }
     render() {
-        return (
+        return ( 
             <div>
                 <MDBContainer className={styles.chartStyle}>
                     <Line data={this.state.dataLine} options={{ responsive: true }} height={130} />
@@ -82,9 +81,6 @@ class Chart extends React.Component {
 const mapStateToProps = (state) => {
     return {
         plotterData: state.PlotterDataReducer.data,
-        chartData: state.ChartReducer.data,
-
-
     };
 };
 
@@ -92,9 +88,6 @@ const mapDisaptchToProps = (dispatch) => {
     return {
         GetPlotterData: (data, onSucess) => {
             dispatch(_GetPlotterData(data, onSucess));
-        },
-        GetChartData: (data, onSucess) => {
-            dispatch(_GetChartData(data, onSucess));
         },
     };
 };

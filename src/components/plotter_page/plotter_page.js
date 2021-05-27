@@ -4,7 +4,6 @@ import styles from './plotter_page.module.css'
 import { connect } from "react-redux";
 import { _GetDimensionsMeasuresData } from "../../redux/redux-actions/dimensions_measures_action";
 import { _GetPlotterData } from "../../redux/redux-actions/plotter_data_action";
-import { _GetChartData } from "../../redux/redux-actions/chart_action"
 import Chart from '../../sharedpreferences/chart/chart'
 
 export let dimensionValue = "";
@@ -115,10 +114,11 @@ class PlotterPage extends React.Component {
                                 </div>
                             </tr>
                         })}
-                        <h1 className={styles.errorStyle}>{this.state.dragError}</h1>
+                        
                     </Table>
+                    
                 </div>
-
+                <h1 className={styles.errorStyle}>{this.state.dragError}</h1>
 
             </div>
         )
@@ -139,9 +139,6 @@ const mapDisaptchToProps = (dispatch) => {
         },
         GetPlotterData: (payload) => {
             dispatch(_GetPlotterData(payload));
-        },
-        GetChartData: (data, onSucess) => {
-            dispatch(_GetChartData(data, onSucess));
         },
     };
 };
