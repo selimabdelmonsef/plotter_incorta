@@ -101,22 +101,24 @@ class PlotterPage extends React.Component {
                         {this.props.data?.map((element, index) => {
                             return <tr>
                                 <th draggable="true" onDragStart={(event) => this.onDragStart(event, element)} style={{ paddingTop: '45px' }}> {element.name}</th>
-
-                                <div className={styles.block_1} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropDimension(event)}>
-                                    Dimensions: <span >
-                                        {this.state.handleDrag_2.name}</span>
-                                </div>
-                                <div className={styles.block_2} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropMeasure(event)}>
-                                    Measure: <span >
-                                        {this.state.handleDragMeasure.name}
-                                    </span>
-
-                                </div>
                             </tr>
                         })}
-                        
+
                     </Table>
-                    
+
+                </div>
+                <div className={styles.block_1} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropDimension(event)}>
+                    Dimensions: <span >
+                        {this.state.handleDrag_2.name}</span>
+                    <span onClick={()=>this.setState({handleDrag_2:""})} className={styles.cancelRequest}>X</span>
+
+                </div>
+                <div className={styles.block_2} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDropMeasure(event)}>
+                    Measure: <span >
+                        {this.state.handleDragMeasure.name}
+                    </span>
+                    <span onClick={()=>this.setState({handleDragMeasure:""})} className={styles.cancelRequest}>X</span>
+
                 </div>
                 <h1 className={styles.errorStyle}>{this.state.dragError}</h1>
 

@@ -13,14 +13,14 @@ td, th {
   }
  .block_1 {
   width: 15rem;
-  height: 2rem;
-  margin: 0.5rem;
-  background-color: #eee;
-  top: 150px;
-  left: 95px;
-  text-align: center;
+    height: 2rem;
+    margin: 0.5rem;
+    background-color: #eee;
+    top: 150px;
+    left: 95px;
+    padding-left: 15px;
     padding-top: 3px;
-  position: absolute;
+    position: absolute;
 }
 .block_2 {
   width: 15rem;
@@ -29,7 +29,7 @@ td, th {
   background-color: #eee;
   top: 200px;
   left: 95px;
-  text-align: center;
+  padding-left: 15px;
     padding-top: 3px;
   position: absolute;
 }
@@ -42,6 +42,11 @@ td, th {
   position: absolute;
     left: 30%;
     top: 50%;
+}
+.cancelRequest{
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
 }
 @media only screen and (min-width:768px){
   th {
